@@ -1,0 +1,149 @@
+{
+  "address": "0x61cAC1a16aA78baE5d493D0009F879256cFf7566",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "string",
+          "name": "uniqueCode",
+          "type": "string"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "claimant",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "MerchCodeClaimed",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "uniqueCode",
+          "type": "string"
+        }
+      ],
+      "name": "claimCode",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "uniqueCode",
+          "type": "string"
+        }
+      ],
+      "name": "claimedCodes",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "claimant",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "uniqueCode",
+          "type": "string"
+        }
+      ],
+      "name": "getClaimant",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x547c34b9a4ac7e80c3b88cd31a011ccc9f58277b264a4e438387b9224ecd120f",
+  "receipt": {
+    "to": null,
+    "from": "0x22E944E97171f7C699B9CaB36622631227d11D48",
+    "contractAddress": "0x61cAC1a16aA78baE5d493D0009F879256cFf7566",
+    "transactionIndex": 0,
+    "gasUsed": "246522",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xe016f3c263dae8dd51e391afedcc2525d1fdebc6ac6ccb87347547791c90426d",
+    "transactionHash": "0x547c34b9a4ac7e80c3b88cd31a011ccc9f58277b264a4e438387b9224ecd120f",
+    "logs": [],
+    "blockNumber": 7536790,
+    "cumulativeGasUsed": "246522",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "0dae2765f8037f4bffde5d499e49c51a",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"string\",\"name\":\"uniqueCode\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"claimant\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"MerchCodeClaimed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"uniqueCode\",\"type\":\"string\"}],\"name\":\"claimCode\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"uniqueCode\",\"type\":\"string\"}],\"name\":\"claimedCodes\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"claimant\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"uniqueCode\",\"type\":\"string\"}],\"name\":\"getClaimant\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/MerchAttestation.sol\":\"MerchAttestation\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/MerchAttestation.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity >=0.8.0 <0.9.0;\\n\\n// Eliminamos las importaciones de OpenZeppelin ERC721 ya que este contrato no ser\\u00e1 un NFT\\n// import \\\"@openzeppelin/contracts/token/ERC721/ERC721.sol\\\";\\n// import \\\"@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol\\\";\\n\\n// Cambiamos el nombre del contrato de nuevo a MerchAttestation\\ncontract MerchAttestation { // Nombre del contrato actualizado\\n    // Eliminamos las variables y mappings relacionados con NFTs que no necesitamos\\n    // uint256 public tokenIdCounter;\\n    // mapping(uint256 tokenId => string) public tokenURIs;\\n    // string[] public uris = [...];\\n\\n    // Mapping para rastrear si un c\\u00f3digo \\u00fanico ha sido reclamado y por qui\\u00e9n\\n    // La clave es el c\\u00f3digo \\u00fanico (string) y el valor es la direcci\\u00f3n del reclamante (address)\\n    mapping(string uniqueCode => address claimant) public claimedCodes;\\n\\n    // Opcional: Mapping para rastrear si una direcci\\u00f3n ya ha reclamado alg\\u00fan c\\u00f3digo\\n    // Esto evita que una misma billetera reclame m\\u00faltiples c\\u00f3digos, si ese es el requisito.\\n    // mapping(address claimant => bool hasClaimedAnyCode);\\n\\n    // Evento para registrar cada reclamo exitoso en la blockchain\\n    // Esto facilita el seguimiento y la verificaci\\u00f3n de los reclamos\\n    event MerchCodeClaimed(string indexed uniqueCode, address indexed claimant, uint256 timestamp);\\n\\n    // Constructor simple. No necesita inicializar contratos padres ERC721.\\n    constructor() {}\\n\\n    // Eliminamos las funciones relacionadas con URIs de NFTs\\n    // function _baseURI() ...\\n    // function tokenURI() ...\\n\\n    // Funci\\u00f3n principal para que un usuario reclame un c\\u00f3digo \\u00fanico de mercanc\\u00eda\\n    // @param uniqueCode: El c\\u00f3digo \\u00fanico asociado a la pieza de mercanc\\u00eda\\n    function claimCode(string calldata uniqueCode) public {\\n        // Requerir que el c\\u00f3digo \\u00fanico no haya sido reclamado antes\\n        // claimedCodes[uniqueCode] == address(0) verifica si la entrada para este c\\u00f3digo est\\u00e1 vac\\u00eda\\n        require(claimedCodes[uniqueCode] == address(0), \\\"Code already claimed\\\");\\n\\n        // Opcional: Requerir que la direcci\\u00f3n que llama (msg.sender) no haya reclamado ning\\u00fan c\\u00f3digo antes\\n        // Descomenta la siguiente l\\u00ednea si solo quieres permitir 1 reclamo por billetera\\n        // require(!hasClaimedAnyCode[msg.sender], \\\"Address has already claimed a code\\\");\\n\\n        // Registrar el reclamo: asociar el c\\u00f3digo \\u00fanico con la direcci\\u00f3n del usuario que llama\\n        claimedCodes[uniqueCode] = msg.sender;\\n\\n        // Opcional: Marcar que esta direcci\\u00f3n ya ha reclamado\\n        // Descomenta la siguiente l\\u00ednea si solo quieres permitir 1 reclamo por billetera\\n        // hasClaimedAnyCode[msg.sender] = true;\\n\\n        // Emitir un evento para registrar el reclamo en los logs de la transacci\\u00f3n\\n        emit MerchCodeClaimed(uniqueCode, msg.sender, block.timestamp);\\n    }\\n\\n    // Funci\\u00f3n de vista para verificar si un c\\u00f3digo espec\\u00edfico ha sido reclamado y por qui\\u00e9n\\n    // @param uniqueCode: El c\\u00f3digo \\u00fanico a verificar\\n    // @return La direcci\\u00f3n de la billetera que reclam\\u00f3 el c\\u00f3digo, o address(0) si no ha sido reclamado\\n    function getClaimant(string calldata uniqueCode) public view returns (address) {\\n        return claimedCodes[uniqueCode];\\n    }\\n\\n    // Opcional: Funci\\u00f3n de vista para verificar si una direcci\\u00f3n espec\\u00edfica ha reclamado alg\\u00fan c\\u00f3digo\\n    // @param claimantAddress: La direcci\\u00f3n a verificar\\n    // @return true si la direcci\\u00f3n ha reclamado al menos un c\\u00f3digo, false en caso contrario\\n    // function hasClaimed(address claimantAddress) public view returns (bool) {\\n    //     return hasClaimedAnyCode[claimantAddress];\\n    // }\\n}\\n\",\"keccak256\":\"0x9b30d93ec0ab1f3008f1c80f8db78070c52b98a6dfab7a12efabb8b676e88ba1\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5061037f806100206000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806348c9a2f21461004657806379d0cf8a14610075578063985eb8ae1461008a575b600080fd5b610059610054366004610200565b6100be565b6040516001600160a01b03909116815260200160405180910390f35b610088610083366004610200565b6100f2565b005b610059610098366004610288565b80516020818301810180516000825292820191909301209152546001600160a01b031681565b60008083836040516100d1929190610339565b908152604051908190036020019020546001600160a01b0316905092915050565b60006001600160a01b03166000838360405161010f929190610339565b908152604051908190036020019020546001600160a01b0316146101705760405162461bcd60e51b815260206004820152601460248201527310dbd91948185b1c9958591e4818db185a5b595960621b604482015260640160405180910390fd5b3360008383604051610183929190610339565b90815260405190819003602001812080546001600160a01b03939093166001600160a01b03199093169290921790915533906101c29084908490610339565b604051908190038120428252907fd0abec11e38e93d87cc0c5449be93a6360460e0768c8529df18bd23db1fff1ae9060200160405180910390a35050565b6000806020838503121561021357600080fd5b823567ffffffffffffffff8082111561022b57600080fd5b818501915085601f83011261023f57600080fd5b81358181111561024e57600080fd5b86602082850101111561026057600080fd5b60209290920196919550909350505050565b634e487b7160e01b600052604160045260246000fd5b60006020828403121561029a57600080fd5b813567ffffffffffffffff808211156102b257600080fd5b818401915084601f8301126102c657600080fd5b8135818111156102d8576102d8610272565b604051601f8201601f19908116603f0116810190838211818310171561030057610300610272565b8160405282815287602084870101111561031957600080fd5b826020860160208301376000928101602001929092525095945050505050565b818382376000910190815291905056fea2646970667358221220efb34fac708f0ec6866fb7d7eff6e317a0b845af55f1a2bf5295691c823fd7c064736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806348c9a2f21461004657806379d0cf8a14610075578063985eb8ae1461008a575b600080fd5b610059610054366004610200565b6100be565b6040516001600160a01b03909116815260200160405180910390f35b610088610083366004610200565b6100f2565b005b610059610098366004610288565b80516020818301810180516000825292820191909301209152546001600160a01b031681565b60008083836040516100d1929190610339565b908152604051908190036020019020546001600160a01b0316905092915050565b60006001600160a01b03166000838360405161010f929190610339565b908152604051908190036020019020546001600160a01b0316146101705760405162461bcd60e51b815260206004820152601460248201527310dbd91948185b1c9958591e4818db185a5b595960621b604482015260640160405180910390fd5b3360008383604051610183929190610339565b90815260405190819003602001812080546001600160a01b03939093166001600160a01b03199093169290921790915533906101c29084908490610339565b604051908190038120428252907fd0abec11e38e93d87cc0c5449be93a6360460e0768c8529df18bd23db1fff1ae9060200160405180910390a35050565b6000806020838503121561021357600080fd5b823567ffffffffffffffff8082111561022b57600080fd5b818501915085601f83011261023f57600080fd5b81358181111561024e57600080fd5b86602082850101111561026057600080fd5b60209290920196919550909350505050565b634e487b7160e01b600052604160045260246000fd5b60006020828403121561029a57600080fd5b813567ffffffffffffffff808211156102b257600080fd5b818401915084601f8301126102c657600080fd5b8135818111156102d8576102d8610272565b604051601f8201601f19908116603f0116810190838211818310171561030057610300610272565b8160405282815287602084870101111561031957600080fd5b826020860160208301376000928101602001929092525095945050505050565b818382376000910190815291905056fea2646970667358221220efb34fac708f0ec6866fb7d7eff6e317a0b845af55f1a2bf5295691c823fd7c064736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 5,
+        "contract": "contracts/MerchAttestation.sol:MerchAttestation",
+        "label": "claimedCodes",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_string_memory_ptr,t_address)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_string_memory_ptr,t_address)": {
+        "encoding": "mapping",
+        "key": "t_string_memory_ptr",
+        "label": "mapping(string => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      },
+      "t_string_memory_ptr": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

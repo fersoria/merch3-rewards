@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/MerchAttestation.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity >=0.8.0 <0.9.0;\n\n// Eliminamos las importaciones de OpenZeppelin ERC721 ya que este contrato no será un NFT\n// import \"@openzeppelin/contracts/token/ERC721/ERC721.sol\";\n// import \"@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol\";\n\n// Cambiamos el nombre del contrato de nuevo a MerchAttestation\ncontract MerchAttestation { // Nombre del contrato actualizado\n    // Eliminamos las variables y mappings relacionados con NFTs que no necesitamos\n    // uint256 public tokenIdCounter;\n    // mapping(uint256 tokenId => string) public tokenURIs;\n    // string[] public uris = [...];\n\n    // Mapping para rastrear si un código único ha sido reclamado y por quién\n    // La clave es el código único (string) y el valor es la dirección del reclamante (address)\n    mapping(string uniqueCode => address claimant) public claimedCodes;\n\n    // Opcional: Mapping para rastrear si una dirección ya ha reclamado algún código\n    // Esto evita que una misma billetera reclame múltiples códigos, si ese es el requisito.\n    // mapping(address claimant => bool hasClaimedAnyCode);\n\n    // Evento para registrar cada reclamo exitoso en la blockchain\n    // Esto facilita el seguimiento y la verificación de los reclamos\n    event MerchCodeClaimed(string indexed uniqueCode, address indexed claimant, uint256 timestamp);\n\n    // Constructor simple. No necesita inicializar contratos padres ERC721.\n    constructor() {}\n\n    // Eliminamos las funciones relacionadas con URIs de NFTs\n    // function _baseURI() ...\n    // function tokenURI() ...\n\n    // Función principal para que un usuario reclame un código único de mercancía\n    // @param uniqueCode: El código único asociado a la pieza de mercancía\n    function claimCode(string calldata uniqueCode) public {\n        // Requerir que el código único no haya sido reclamado antes\n        // claimedCodes[uniqueCode] == address(0) verifica si la entrada para este código está vacía\n        require(claimedCodes[uniqueCode] == address(0), \"Code already claimed\");\n\n        // Opcional: Requerir que la dirección que llama (msg.sender) no haya reclamado ningún código antes\n        // Descomenta la siguiente línea si solo quieres permitir 1 reclamo por billetera\n        // require(!hasClaimedAnyCode[msg.sender], \"Address has already claimed a code\");\n\n        // Registrar el reclamo: asociar el código único con la dirección del usuario que llama\n        claimedCodes[uniqueCode] = msg.sender;\n\n        // Opcional: Marcar que esta dirección ya ha reclamado\n        // Descomenta la siguiente línea si solo quieres permitir 1 reclamo por billetera\n        // hasClaimedAnyCode[msg.sender] = true;\n\n        // Emitir un evento para registrar el reclamo en los logs de la transacción\n        emit MerchCodeClaimed(uniqueCode, msg.sender, block.timestamp);\n    }\n\n    // Función de vista para verificar si un código específico ha sido reclamado y por quién\n    // @param uniqueCode: El código único a verificar\n    // @return La dirección de la billetera que reclamó el código, o address(0) si no ha sido reclamado\n    function getClaimant(string calldata uniqueCode) public view returns (address) {\n        return claimedCodes[uniqueCode];\n    }\n\n    // Opcional: Función de vista para verificar si una dirección específica ha reclamado algún código\n    // @param claimantAddress: La dirección a verificar\n    // @return true si la dirección ha reclamado al menos un código, false en caso contrario\n    // function hasClaimed(address claimantAddress) public view returns (bool) {\n    //     return hasClaimedAnyCode[claimantAddress];\n    // }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
