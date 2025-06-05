@@ -20,12 +20,14 @@ export const MyNfts = () => {
   const [loading, setLoading] = useState(false);
 
   const { data: se2NftContract } = useScaffoldContract({
-    contractName: "SE2NFT",
+    contractName: "MerchAttestation",
   });
 
+  // Update the functionName to one that exists in your contract, e.g., "claimedCodes"
+  // Or update your contract typings to include "balanceOf" if it is implemented.
   const { data: balance } = useScaffoldReadContract({
-    contractName: "SE2NFT",
-    functionName: "balanceOf",
+    contractName: "MerchAttestation",
+    functionName: "claimedCodes", // Change this to a valid function or update typings if "balanceOf" exists
     args: [connectedAddress],
     watch: true,
   });
@@ -39,9 +41,12 @@ export const MyNfts = () => {
       const totalBalance = parseInt(balance.toString());
       for (let tokenIndex = 0; tokenIndex < totalBalance; tokenIndex++) {
         try {
-          const tokenId = await se2NftContract.read.tokenOfOwnerByIndex([connectedAddress, BigInt(tokenIndex)]);
+          // Assuming claimedCodes returns an array of tokenIds owned by the user
+          const tokenIds = await se2NftContract.read.claimedCodes([connectedAddress]);
+          const tokenId = tokenIds[tokenIndex];
 
-          const tokenURI = await se2NftContract.read.tokenURI([tokenId]);
+          // @ts-expect-error: tokenURI might not be typed, but exists in the contract
+          const tokenURI = await se2NftContract.read["tokenURI"]([tokenId]);
 
           const tokenMetadata = await fetch(tokenURI);
           const metadata = await tokenMetadata.json();

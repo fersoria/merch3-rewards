@@ -18,12 +18,13 @@ export const AllNfts = () => {
   const [loading, setLoading] = useState(false);
 
   const { data: se2NftContract } = useScaffoldContract({
-    contractName: "SE2NFT",
+    contractName: "MerchAttestation",
   });
 
   const { data: totalSupply } = useScaffoldReadContract({
-    contractName: "SE2NFT",
-    functionName: "totalSupply",
+    contractName: "MerchAttestation",
+    functionName: "claimedCodes",
+    args: [undefined],
     watch: true,
   });
 
@@ -35,10 +36,13 @@ export const AllNfts = () => {
       const collectibleUpdate: Collectible[] = [];
       for (let tokenIndex = 0; tokenIndex < parseInt(totalSupply.toString()); tokenIndex++) {
         try {
-          const tokenId = await se2NftContract.read.tokenByIndex([BigInt(tokenIndex)]);
+          // Assuming token IDs are sequential and start from 0
+          const tokenId = BigInt(tokenIndex);
 
-          const tokenURI = await se2NftContract.read.tokenURI([tokenId]);
-          const owner = await se2NftContract.read.ownerOf([tokenId]);
+          // @ts-expect-error: tokenURI might not be typed in the contract hook
+          const tokenURI = await se2NftContract.read["tokenURI"]([tokenId]);
+          // @ts-expect-error: ownerOf might not be typed in the contract hook
+          const owner = await se2NftContract.read["ownerOf"]([tokenId]);
 
           const tokenMetadata = await fetch(tokenURI);
           const metadata = await tokenMetadata.json();

@@ -1,5 +1,5 @@
 import { wagmiConnectors } from "./wagmiConnectors";
-import { Chain, createClient, fallback, http } from "viem"; // Asegúrate de que Chain, createClient, fallback, http estén importados
+import { Chain, createClient, http } from "viem"; // Asegúrate de que Chain, createClient, fallback, http estén importados
 import { hardhat } from "viem/chains"; // Asegúrate de importar hardhat
 import { createConfig } from "wagmi"; // Asegúrate de importar createConfig
 
