@@ -1,7 +1,7 @@
 "use client"; // Le indica a Next.js que este es un componente de cliente. Necesario para usar hooks de React y wagmi.
 
 // Importaciones necesarias de React, hooks de wagmi y hooks de Scaffold-ETH
-import React, { useState, useEffect, useRef } from "react"; // Importa React y el hook useState para manejar estado local
+import React, { useState, useEffect } from "react"; // Importa React y el hook useState para manejar estado local
 import { useWriteContract, useAccount, useReadContract } from "wagmi"; // Importa hooks de wagmi para interactuar con la billetera y enviar transacciones
 import { useDeployedContractInfo } from "~~/hooks/scaffold-eth"; // Importa hook de Scaffold-ETH para obtener información del contrato desplegado
 import { Html5QrcodeScanner } from "html5-qrcode";
